@@ -1,0 +1,21 @@
+%div.table-responsive
+  %table.table.table-condensed.table-hover.table-bordered
+    %thead
+      %tr
+        %th Image
+        %th User Screen Name
+        %th User Name
+        %th Action
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td= image_tag user.profile_image_uri
+          %td
+            %a{ href: "https://twitter.com/#{user.screen_name}" }
+              = user.screen_name
+          %td
+            %a{ href: "https://twitter.com/#{user.screen_name}" }
+              = user.name
+          %td
+            %a{ href: }
+              add watch list

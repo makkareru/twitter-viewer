@@ -1,22 +1,37 @@
-%div USER_NAME
-%div= @user.name
-%div DESCRIPTION
-%div= @user.description
-
-%div STATUS_COUNT
-= number_with_delimiter @user.statuses_count
-%div FRIENDS_COUNT
-= number_with_delimiter @user.friends_count
-%div FOLLOWERS_COUNT
-= number_with_delimiter @user.followers_count
-%div FAVORITES_COUNT
-= number_with_delimiter @user.favorites_count
-
-%div TIME
-%div= time_ago_in_words(@user.status.created_at).capitalize
-%div STATUS
-%div= @user.status.source
-
-%div ACCESS_TOKEN & SECLET
-%div= session['access_token']
-%div= session['access_token_secret']
+%div.table-responsive
+  %table.table.table-condensed.table-hover.table-bordered
+    %thead
+      %tr
+        %th KEY
+        %td VALUE
+    %tbody
+      %tr
+        %th USER_NAME
+        %td= @user.name
+      %tr
+        %th DESCRIPTION
+        %td= @user.description
+      %tr
+        %th STATUS_COUNT
+        %td= number_with_delimiter @user.statuses_count
+      %tr
+        %th FRIENDS_COUNT
+        %td= number_with_delimiter @user.friends_count
+      %tr
+        %th FOLLOWERS_COUNT
+        %td= number_with_delimiter @user.followers_count
+      %tr
+        %th FAVORITES_COUNT
+        %td= number_with_delimiter @user.favorites_count
+      %tr
+        %th TIME
+        %td= time_ago_in_words(@user.status.created_at).capitalize
+      %tr
+        %th STATUS
+        %td= @user.status.source
+      %tr
+        %th ACCESS_TOKEN
+        %td= session['access_token']
+      %tr
+        %th SECLET
+        %td= session['access_token_secret']

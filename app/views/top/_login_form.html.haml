@@ -1,5 +1,5 @@
-%h1 Login
-
-= form_tag '/auth/twitter', mthod: 'get' do 
-  = button_tag 'sign_in', class: "btn btn-success"
-  
+%div.jumbotron
+  %h1 Twitter Viewer
+  %p Login Page
+  = form_tag '/auth/twitter', mthod: 'get' do 
+    = button_tag 'sign_in', class: "btn btn-primary btn-lg"

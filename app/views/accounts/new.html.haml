@@ -1,2 +1,28 @@
-%h1 Accounts#new
-%p Find me in app/views/accounts/new.html.haml
+= form_for @account do |f|
+  %div.table-responsive
+    %table.table.table-condensed.table-hover.table-bordered
+      %thead
+        %tr
+          %th Image
+          %th Account Screen Name
+          %th Account Name
+          %th Account Follows 
+          %th Account Followers
+          %th Action
+      %tbody
+        %tr
+          %td= image_tag @account.profile_image_uri
+          %td
+            %a{ href: "https://twitter.com/#{@account.screen_name}" }
+              = @account.screen_name
+              = f.hidden_field :screen_name, value: @account.screen_name
+          %td
+            %a{ href: "https://twitter.com/#{@account.screen_name}" }
+              = @account.name
+              = f.hidden_field :name, value: @account.name
+          %td
+            = @account.follow
+          %td
+            = @account.followers
+          %td
+            = f.submit "登録"

@@ -1,21 +1,39 @@
-%div.table-responsive
-  %table.table.table-condensed.table-hover.table-bordered
-    %thead
-      %tr
-        %th Image
-        %th User Screen Name
-        %th User Name
-        %th Action
-    %tbody
-      - @users.each do |user|
+= form_for @account do |f|
+  %div.table-responsive
+    %table.table.table-condensed.table-hover.table-bordered
+      %thead
         %tr
-          %td= image_tag user.profile_image_uri
-          %td
-            %a{ href: "https://twitter.com/#{user.screen_name}" }
-              = user.screen_name
-          %td
-            %a{ href: "https://twitter.com/#{user.screen_name}" }
-              = user.name
-          %td
-            %a{ href: }
-              add watch list
+          %th Image
+          %th Account Screen Name
+          %th Account Name
+          %th Account Follows 
+          %th Account Followers
+          %th Action
+      %tbody
+        - @accounts.each do |account|
+          %tr
+            %td= image_tag account.profile_image_uri
+            %td
+              %a{ href: "https://twitter.com/#{account.screen_name}" }
+                = account.screen_name
+                = f.hidden_field :screen_name, value: account.screen_name
+            %td
+              %a{ href: "https://twitter.com/#{account.screen_name}" }
+                = account.name
+                = f.hidden_field :name, value: account.name
+            %td
+              - follows = @client.follow account.screen_name
+              - follows.each do |follow|
+                %p
+                  %a{ href: "https://twitter.com/#{follow.screen_name}" }
+                    = "#{follow.screen_name} : #{follow.name}"
+              = f.hidden_field :follows, value: follows
+            %td
+              - followers = @client.followers account.screen_name
+              - followers.each do |follower|
+                %p
+                  %a{ href: "https://twitter.com/#{follower.screen_name}" }
+                    = "#{follower.screen_name} : #{follower.name}"
+              = f.hidden_field :followers, value: followers
+            %td
+              = f.submit "登録"

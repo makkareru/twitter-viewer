@@ -1,2 +1,24 @@
-%h1 Accounts#index
-%p Find me in app/views/accounts/index.html.haml
+%div.table-responsive
+  %table.table.table-condensed.table-hover.table-bordered
+    %thead
+      %tr
+        %th Account Screen Name
+        %th Account Name
+        %th Number of Follows
+        %th Number of Followers
+        %th Action
+    %tbody
+      - @accounts.each do |account|
+        %tr
+          %td
+            %a{ href: "https://twitter.com/#{account.screen_name}" }
+              = account.screen_name
+          %td
+            %a{ href: "https://twitter.com/#{account.screen_name}" }
+              = account.name
+          %td
+            = account.follows.size || 0
+          %td
+            = account.followers.size || 0
+          %td
+            add watch list

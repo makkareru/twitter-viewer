@@ -1,6 +1,8 @@
 class SearchesController < ApplicationController
   def account
-    @users = client.user_search(params[:account_name])
+    @accounts = client.user_search(params[:account_name])
+    @account = Account.new
+    @client = client
   end
 
   def tweet

@@ -1,0 +1,4 @@
+- if session['access_token'] && session['access_token_secret']
+  = render 'timelines'
+- else
+  = render 'login_form'

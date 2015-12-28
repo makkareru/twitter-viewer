@@ -1,0 +1,25 @@
+%div USER_NAME
+%div= @user.name
+%div DESCRIPTION
+%div= @user.description
+
+%div STATUS_COUNT
+= number_with_delimiter @user.statuses_count
+%div FRIENDS_COUNT
+= number_with_delimiter @user.friends_count
+%div FOLLOWERS_COUNT
+= number_with_delimiter @user.followers_count
+%div FAVORITES_COUNT
+= number_with_delimiter @user.favorites_count
+
+%div TIME
+%div= time_ago_in_words(@user.status.created_at).capitalize
+%div STATUS
+%div= @user.status.source
+
+%div ACCESS_TOKEN & SECLET
+%div= session['access_token']
+%div= session['access_token_secret']
+
+= form_tag signout_path, method: 'delete' do
+  %button signout

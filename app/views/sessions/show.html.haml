@@ -20,6 +20,3 @@
 %div ACCESS_TOKEN & SECLET
 %div= session['access_token']
 %div= session['access_token_secret']
-
-= form_tag signout_path, method: 'delete' do
-  %button signout

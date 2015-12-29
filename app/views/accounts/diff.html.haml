@@ -1,2 +1,37 @@
-%h1 Accounts#diff
-%p Find me in app/views/accounts/diff.html.haml
+%div.table-responsive
+  %table.table.table-condensed.table-hover.table-bordered
+    %thead
+      %tr
+        %th Account Screen Name
+        %th Account Name
+        %th Number of Follows
+        %th Number of Followers
+        %th Action
+    %tbody
+      - @accounts.each do |account|
+        %tr
+          %td
+            %a{ href: "https://twitter.com/#{account.screen_name}", target: "_blank"}
+              = account.screen_name
+          %td
+            %a{ href: "https://twitter.com/#{account.screen_name}", target: "_blank" }
+              = account.name
+          %td
+            = account.follows.size
+          %td
+            = account.followers.size
+
+%div.table-responsive
+  %table.table.table-condensed.table-hover.table-bordered
+    %thead
+      %tr
+        %th index
+        %th result
+    %tbody
+      - @results.each.with_index do |result,index|
+        %tr
+          %th
+            = index
+          %td
+            %a{ href: "https://twitter.com/intent/user?user_id=#{result}", target: "_blank" }
+              = result

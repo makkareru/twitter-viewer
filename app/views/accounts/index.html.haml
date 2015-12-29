@@ -1,24 +1,45 @@
-%div.table-responsive
-  %table.table.table-condensed.table-hover.table-bordered
-    %thead
+= form_tag diff_accounts_path, method: 'get' do
+  %div.table-responsive
+    %table.table
       %tr
-        %th Account Screen Name
-        %th Account Name
-        %th Number of Follows
-        %th Number of Followers
-        %th Action
-    %tbody
-      - @accounts.each do |account|
+        %td
+          = radio_button_tag 'type', 'self_follow', true
+          = label "type", "self_follow"
+        %td
+          = radio_button_tag 'type', 'self_follower'
+          = label "type", "self_follower"
+        %td
+          = radio_button_tag 'type', 'follow'
+          = label "type", "follow"
+        %td
+          = radio_button_tag 'type', 'follower'
+          = label "type", "follower"
+         
+  %div.table-responsive
+    %table.table.table-condensed.table-hover.table-bordered
+      %thead
         %tr
-          %td
-            %a{ href: "https://twitter.com/#{account.screen_name}" }
-              = account.screen_name
-          %td
-            %a{ href: "https://twitter.com/#{account.screen_name}" }
-              = account.name
-          %td
-            = account.follows.size || 0
-          %td
-            = account.followers.size || 0
-          %td
-            add watch list
+          %th #
+          %th Account Screen Name
+          %th Account Name
+          %th Number of Follows
+          %th Number of Followers
+          %th Action
+      %tbody
+        - @accounts.each do |account|
+          %tr
+            %td
+              = check_box_tag 'target', account.screen_name
+            %td
+              %a{ href: "https://twitter.com/#{account.screen_name}", target: "_blank" }
+                = account.screen_name
+            %td
+              %a{ href: "https://twitter.com/#{account.screen_name}", target: "_blank" }
+                = account.name
+            %td
+              = account.follows.size || 0
+            %td
+              = account.followers.size || 0
+            %td
+              add watch list
+  = submit_tag "submit"

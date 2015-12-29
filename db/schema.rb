@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20151228192108) do
 
   create_table "accounts", force: :cascade do |t|
+    t.string   "account_id",  limit: 255
     t.string   "name",        limit: 255
     t.string   "screen_name", limit: 255
     t.text     "follows",     limit: 65535
